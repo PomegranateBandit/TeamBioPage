@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Titlegoeshere</title>
+	<link rel="stylesheet" type="text/css" href="css/reset.css" media="screen">
+	<link rel="stylesheet" type="text/css" href="css/main.css" media="screen">
+	<!--  [if Lt IE 9]>
+		<script src="js/html5shiv.js"></script><![endif]-->
+</head>
+<body>
+	<h1>Tabs with HTML, CSS & JavaScript</h1>
+	<div class="tabs">
+		<div class="tabs__sidebar">
+			<button class="tabs__button" data-for-tab="1">Lead Designer</button>
+			<button class="tabs__button" data-for-tab="2">Lead Developer</button>
+		<!--	<button class="tabs__button" data-for-tab="3">Tab #3</button> -->
+		</div>
+		<div class="tabs__content" data-tab="1">
+			<img src="images/sonny.jpg"alt="Image of Nicholas" width="220px">
+			<div class="bio">
+					<h2>Nic Amerongen <br> Role: Designer</h2><br>
+	            <p>Born as a result of a freak  accident during a fight between a jurassic Megalodon and a retired fax machine,<br>
+								 Nicholas lives a relatively standard life in FuckTheBusSystem, Ontario. He decided to take up a life of cleaning <br>
+								 up the streets after he was ambushed in the library one day by 16 fighter jets. For several decades Nicholas served<br>
+				 to keep the Decepticons from allowing Apple to take over the world with their shitty technology.
+	    	SHARK </p>
+			</div>
+		</div>
+		<div class="tabs__content" data-tab="2">
+			<img src="images/josh.jpg"alt="Image of Josh" width="220px">
+			<div class="bio">
+				<h2>Josh Taylor <br> Role: Developer</h2><br>
+				<p>I’m Josh Taylor. I graduated with a certificate in Mechanical techniques for CNC in 2016 from Fanshawe (St. Thomas Elgin <br>
+				Regional Campus) and started working in 3D design and fabrication on commission while studying there. I designed artistic<br>
+				and functional parts for the college, as well as other clients such as the STEGH (St Thomas Elgin General Hospital) Foundation. </p>
+			</div>
+		</div>
+
+
+
+	</div>
+
+
+
+
+<script >
+function setupTabs () {
+  document.querySelectorAll(".tabs__button").forEach(button => {
+    button.addEventListener("click", () => {
+      const sideBar = button.parentElement;
+      const tabsContainer = sideBar.parentElement;
+      const tabNumber = button.dataset.forTab;
+      const tabToActvate = tabsContainer.querySelector(`.tabs__content[data-tab="${tabNumber}"]`);
+
+      sideBar.querySelectorAll(".tabs__button").forEach(button => {
+        button.classList.remove("tabs__button--active");
+      });
+      tabsContainer.querySelectorAll(".tabs__content").forEach(tab=> {
+        tab.classList.remove("tabs__content--active");
+      });
+
+        button.classList.add("tabs__button--active");
+        tabToActvate.classList.add("tabs__content--active");
+    });
+  });
+}
+
+
+document.addEventListener("DOMContentLoaded", () => {
+	setupTabs();
+
+  document.querySelectorAll(".tabs").forEach(tabsContainer => {
+    tabsContainer.querySelector(".tabs__sidebar .tabs__button").click();
+  });
+});
+
+</script>
+</body>
+</html>
